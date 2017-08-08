@@ -1,0 +1,87 @@
+.login{
+    text-align:center;
+}
+
+#mainPage{
+    display:none;
+}
+
+#endPage{
+    display:none;
+    text-align:center;
+}
+
+#bookContainer{
+    display:block;
+}
+
+.livro{
+    text-align:center;
+    display: none;
+}
+
+.titulo{
+    text-align:center;
+    display: block;
+}
+
+.img-thumbnail{
+    display: block;
+	height: 50%;
+	margin: 20px auto;
+    -moz-transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.img-thumbnail:hover img {
+    -moz-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+#title{
+    text-align: center;
+    color: goldenrod;
+}
+
+body{
+    background-image: url(https://www.valinor.com.br/wp-content/uploads/2014/12/tolkien_logo_wallpaper_1440x900_by_dmiguez-d5d60vp-672x372.jpg);
+    background-color: lightgoldenrodyellow;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-blend-mode:saturation;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    padding: 15px;
+    font: 40px arial, sans-serif;
+    color: goldenrod;
+}
+
+h2 {
+    text-align: center;
+    padding: 15px;
+    color: goldenrod;
+    text-align:center;
+}
+
+p {
+    text-align: center;
+    padding: 15px;
+    color: goldenrod;
+}
+
+.livro.active{
+    display: block;
+} 
+
+.login.active{
+    display: block;
+} 
+
+.botao{
+    text-align:center;
+}
