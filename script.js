@@ -135,18 +135,18 @@ function ComputeAndDisplayStats() {
     //while we can dequeue books
     while ((book = library.booksRead.dequeue()) !== undefined) { //dequeue booksViewed into book; If book is not undefined, run the loop.
         //counting total likes and total dislikes for all books
-        totalLikes += book.likes;
-        totalDislikes += book.dislikes;
+        totalLikes += book.like;
+        totalDislikes += book.dislike;
 
         var html = "<tr>";
         html += "<td>";
         html += book.title;
         html += "</td>";
         html += "<td>";
-        html += book.likes;
+        html += book.like;
         html += "</td>";
         html += "<td>";
-        html += book.dislikes;
+        html += book.dislike;
         html += "</td>";
         html += "</tr>";
         $('#tbody').append(html);
