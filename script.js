@@ -149,7 +149,7 @@ function Stats() {
         html += book.dislike;
         html += "</td>";
         html += "</tr>";
-        $('#tbody').append(html);
+        $('#counter').append(html);
     }
 
     $("#contador1").text(totalLikes);
