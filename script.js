@@ -12,6 +12,10 @@ $(document).ready(function () {
 
     $('#buttonLike').click(function () {
         library.like();
+            if(library.nextBook() === false){
+                $("#mainPage").hide();
+                $("#endPage").show();
+            }
 
 
         /*$currentBook = $('.Book.active');
@@ -33,7 +37,10 @@ $(document).ready(function () {
     });
     $('#buttonDislike').click(function () {
         library.dislike();
-
+            if(library.nextBook() === false){
+                $("#mainPage").hide();
+                $("#endPage").show();
+            }
 
     });
 });
@@ -71,11 +78,7 @@ function Queue() {
     this.dequeue = function () {
         var result = this.data[0];
         this.data.shift();
-        while (result != null) {
-            return result;
-        }
-        $("#mainPage").hide();
-        $("#endPage").show();
+        return result;
     }
 }
 
@@ -89,18 +92,19 @@ function Library() {                                                 /*métodos,
     }
     this.nextBook = function () {
         this.actualBook = this.books.dequeue();
-        this.actualBook.render();
+            if(this.actualBook === undefined)
+                return false;
         this.booksRead.enqueue(this.actualBook);
+        this.actualBook.render();
+        
 
 
     }
     this.like = function () {
-        this.actualBook.like++;
-        this.nextBook();
+        this.actualBook.like++;  
     }
     this.dislike = function () {
         this.actualBook.dislike++;
-        this.nextBook();
     }
     
     /*this.counter = function(){
