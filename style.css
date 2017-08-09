@@ -85,3 +85,31 @@ p {
 .botao{
     text-align:center;
 }
+
+#counter{
+    text-align: center;
+    padding: 15px;
+    font: 20px arial, sans-serif;
+    color: goldenrod
+}
+
+#contadro1{
+    text-align: center;
+    padding: 15px;
+    font: 15px arial, sans-serif;
+    color: goldenrod
+}
+
+#contador2{
+    text-align: center;
+    padding: 15px;
+    font: 15px arial, sans-serif;
+    color: goldenrod
+}
+
+#contador3{
+    text-align: center;
+    padding: 15px;
+    font: 15px arial, sans-serif;
+    color: goldenrod
+}

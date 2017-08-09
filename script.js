@@ -27,6 +27,14 @@ $(document).ready(function () {
         }
 
     });
+    $('#buttonFav').click(function () {
+        library.favorite();
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
+        }
+    });
 });
 
 function Book(image, title, descr, compra, linkAmazon, linkWook) {   /*construtor*/
@@ -38,6 +46,7 @@ function Book(image, title, descr, compra, linkAmazon, linkWook) {   /*construto
     this.linkWook = linkWook;
     this.like = 0;
     this.dislike = 0;
+    this.favorite = 0;
 
 
     this.render = function () {
@@ -90,7 +99,9 @@ function Library() {                                                 /*métodos,
     this.dislike = function () {
         this.actualBook.dislike++;
     }
-
+    this.favorite = function () {
+        this.actualBook.favorite++;
+    }
 
 
 }
@@ -112,6 +123,7 @@ library.nextBook();
 function Stats() {
     var totalLikes = 0;
     var totalDislikes = 0;
+    var totalFavorites = 0;
 
     var book;
     //while we can dequeue books
@@ -119,6 +131,7 @@ function Stats() {
         //counting total likes and total dislikes for all books
         totalLikes += book.like;
         totalDislikes += book.dislike;
+        totalFavorites += book.favorite;
 
         var html = "<tr>";
         html += "<td>";
@@ -130,12 +143,16 @@ function Stats() {
         html += "<td>";
         html += book.dislike;
         html += "</td>";
+        html += "<td>";
+        html += book.favorite;
+        html += "</td>";
         html += "</tr>";
         $('#counter').append(html);
     }
 
     $("#contador1").text(totalLikes);
     $("#contador2").text(totalDislikes);
+    $("#contador3").text(totalFavorites);
 }
 
 
