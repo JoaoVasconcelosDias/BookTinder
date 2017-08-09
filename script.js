@@ -15,7 +15,7 @@ $(document).ready(function () {
             if(library.nextBook() === false){
                 $("#mainPage").hide();
                 $("#endPage").show();
-                ComputeAndDisplayStats()
+                Stats()
             }
 
 
@@ -41,7 +41,7 @@ $(document).ready(function () {
             if(library.nextBook() === false){
                 $("#mainPage").hide();
                 $("#endPage").show();
-                ComputeAndDisplayStats()
+                Stats()
             }
 
     });
@@ -127,7 +127,7 @@ library.addBook(book3);
 
 library.nextBook();
 
-function ComputeAndDisplayStats() {
+function Stats() {
     var totalLikes = 0;
     var totalDislikes = 0;
 
