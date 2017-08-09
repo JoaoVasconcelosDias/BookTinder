@@ -15,6 +15,7 @@ $(document).ready(function () {
             if(library.nextBook() === false){
                 $("#mainPage").hide();
                 $("#endPage").show();
+                ComputeAndDisplayStats()
             }
 
 
@@ -40,6 +41,7 @@ $(document).ready(function () {
             if(library.nextBook() === false){
                 $("#mainPage").hide();
                 $("#endPage").show();
+                ComputeAndDisplayStats()
             }
 
     });
@@ -107,13 +109,7 @@ function Library() {                                                 /*métodos,
         this.actualBook.dislike++;
     }
     
-    /*this.counter = function(){
-        var total = 0;
-        for (var i =0;i < this.books.length; i++ ){
-            total += this.books[i].like;
-        }
-        return total ;
-    }*/
+    
 
 }
 
@@ -130,6 +126,36 @@ library.addBook(book3);
 
 
 library.nextBook();
+
+function ComputeAndDisplayStats() {
+    var totalLikes = 0;
+    var totalDislikes = 0;
+
+    var book;
+    //while we can dequeue books
+    while ((book = library.booksRead.dequeue()) !== undefined) { //dequeue booksViewed into book; If book is not undefined, run the loop.
+        //counting total likes and total dislikes for all books
+        totalLikes += book.likes;
+        totalDislikes += book.dislikes;
+
+        var html = "<tr>";
+        html += "<td>";
+        html += book.title;
+        html += "</td>";
+        html += "<td>";
+        html += book.likes;
+        html += "</td>";
+        html += "<td>";
+        html += book.dislikes;
+        html += "</td>";
+        html += "</tr>";
+        $('#tbody').append(html);
+    }
+
+    $("#contador1").text(totalLikes);
+    $("#contador2").text(totalDislikes);
+}
+
 
 /*function complete() {
 
