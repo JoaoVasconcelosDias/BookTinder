@@ -12,37 +12,19 @@ $(document).ready(function () {
 
     $('#buttonLike').click(function () {
         library.like();
-            if(library.nextBook() === false){
-                $("#mainPage").hide();
-                $("#endPage").show();
-                Stats()
-            }
-
-
-        /*$currentBook = $('.Book.active');
-        $nextBook = $currentBook.next('.Book');
-        var index = $('.Book').index($currentBook);
-        library[index].opinion = $(this).attr('data-Opinion');
-
-        if($nextBook.length > 0){
-            $currentBook.removeClass('active');
-            $nextBook.addClass('active');
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
         }
-        else{
-            Likescounter();
-            complete();
-            completeLikes();
-            $('#mainPage').hide();
-            $('#endPage').show();
-        }*/
     });
     $('#buttonDislike').click(function () {
         library.dislike();
-            if(library.nextBook() === false){
-                $("#mainPage").hide();
-                $("#endPage").show();
-                Stats()
-            }
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
+        }
 
     });
 });
@@ -94,22 +76,22 @@ function Library() {                                                 /*métodos,
     }
     this.nextBook = function () {
         this.actualBook = this.books.dequeue();
-            if(this.actualBook === undefined)
-                return false;
+        if (this.actualBook === undefined)
+            return false;
         this.booksRead.enqueue(this.actualBook);
         this.actualBook.render();
-        
+
 
 
     }
     this.like = function () {
-        this.actualBook.like++;  
+        this.actualBook.like++;
     }
     this.dislike = function () {
         this.actualBook.dislike++;
     }
-    
-    
+
+
 
 }
 
