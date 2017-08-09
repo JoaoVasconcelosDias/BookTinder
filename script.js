@@ -133,7 +133,7 @@ function Stats() {
 
     var book;
     //while we can dequeue books
-    while ((book = library.booksRead.dequeue()) !== undefined) { //dequeue booksViewed into book; If book is not undefined, run the loop.
+    while ((book = library.booksRead.dequeue()) !== undefined) {
         //counting total likes and total dislikes for all books
         totalLikes += book.like;
         totalDislikes += book.dislike;
