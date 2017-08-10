@@ -1,61 +1,18 @@
-
-$(document).ready(function () {
-
-
-    $(".entrada").click(function () {
-        $login = $(this).parent();
-        $login.hide();
-        $("#mainPage").show();
-    });
-
-
-
-    $('#buttonLike').click(function () {
-        library.like();
-        if (library.nextBook() === false) {
-            $("#mainPage").hide();
-            $("#endPage").show();
-            Stats()
-        }
-    });
-    $('#buttonFav').click(function () {
-        library.favorite();
-        if (library.nextBook() === false) {
-            $("#mainPage").hide();
-            $("#endPage").show();
-            Stats()
-        }
-
-    });
-    $('#buttonDislike').click(function () {
-        library.dislike();
-        if (library.nextBook() === false) {
-            $("#mainPage").hide();
-            $("#endPage").show();
-            Stats()
-        }
-    });
-});
-
-function Book(image, title, descr, compra, linkAmazon, linkWook) {   /*construtor*/
-    this.image = image;                                                               /*atributos*/
+function Book(title, descr, img, buy) {   /*construtor*/                                                              /*atributos*/
     this.title = title;
     this.descr = descr;
-    this.compra = compra;
-    this.linkAmazon = linkAmazon;
-    this.linkWook = linkWook;
+    this.img = img;
+    this.buy = buy;
     this.like = 0;
     this.dislike = 0;
     this.favorite = 0;
 
 
     this.render = function () {
-        $(".img-thumbnail").attr('src', this.image);
         $("#title").html(this.title);
         $("#descricao").html(this.descr);
-        $("#compra").html(this.compra);
-        $(".linkAmazon").attr('href', this.linkAmazon);
-        $(".linkWook").attr('href', this.linkWook);
+        $(".img-thumbnail").attr('src', this.img);
+        $(".compra").attr('href', this.buy);
 
     }
 
@@ -75,11 +32,11 @@ function Queue() {
     }
 }
 
+
 function Library() {                                                 /*métodos, saõ as funções apresentadas num construtor*/
     this.books = new Queue();
     this.booksRead = new Queue();
     this.actualBook = null;
-    //this.index = 1;
     this.addBook = function (book) {
         this.books.enqueue(book);
     }
@@ -106,7 +63,7 @@ function Library() {                                                 /*métodos,
 
 }
 
-var book1 = new Book("https://images-na.ssl-images-amazon.com/images/I/51tW-UJVfHL._SX321_BO1,204,203,200_.jpg", "<strong>Lord of the Rings: The Fellowship of the Ring</strong>", "Texto", "Compre em", "https://www.amazon.com/Fellowship-Ring-Being-First-Rings/dp/0547928211/ref=sr_1_1?ie=UTF8&qid=1501075167&sr=8-1&keywords=fellowship+of+the+ring", "https://www.wook.pt/")
+/*var book1 = new Book("https://images-na.ssl-images-amazon.com/images/I/51tW-UJVfHL._SX321_BO1,204,203,200_.jpg", "<strong>Lord of the Rings: The Fellowship of the Ring</strong>", "Texto", "Compre em", "https://www.amazon.com/Fellowship-Ring-Being-First-Rings/dp/0547928211/ref=sr_1_1?ie=UTF8&qid=1501075167&sr=8-1&keywords=fellowship+of+the+ring", "https://www.wook.pt/")
 var book2 = new Book("https://images-na.ssl-images-amazon.com/images/I/51zwIlXzbSL._SX328_BO1,204,203,200_.jpg", "<strong>Lord of the Rings: The Two Towers</strong>", "Texto", "Compre em", "https://www.amazon.com/Two-Towers-Being-Second-Rings/dp/0547928203/ref=sr_1_2?ie=UTF8&qid=1501075202&sr=8-2&keywords=the+two+towers", "https://www.wook.pt/")
 var book3 = new Book("https://images-na.ssl-images-amazon.com/images/I/51MlPWDaXGL._SX331_BO1,204,203,200_.jpg", "<strong>Lord of the Rings: The Return of the King</strong>", "Texto", "Compre em", "https://www.amazon.com/Return-King-Being-Third-Rings/dp/054792819X/ref=sr_1_1?ie=UTF8&qid=1501075386&sr=8-1&keywords=the+return+of+the+king", "https://www.wook.pt/")
 
@@ -118,7 +75,31 @@ library.addBook(book2);
 library.addBook(book3);
 
 
-library.nextBook();
+library.nextBook(a);
+*/
+
+var library = null;
+function init () {
+    var paramPesquisar = "spiderman";
+    $.get("https://www.googleapis.com/books/v1/volumes?q=" + encodeURI(paramPesquisar)).done(function (data) {     //o data é o call back do json
+        library = new Library();
+        for (var i =0 ; i<10; i++){
+            var title = data.items[i].volumeInfo.title;
+            var descr = data.items[i].volumeInfo.description;
+            var img = data.items[i].volumeInfo.imageLinks.thumbnail;
+            var buy = data.items[i].saleInfo.buyLink
+            
+            var a = new Book (title, descr, img, buy)
+            library.addBook(a);
+        }
+        library.nextBook();
+ 
+    }).fail(function (data) {
+        
+    })
+}
+
+init();
 
 function Stats() {
     var totalLikes = 0;
@@ -156,4 +137,47 @@ function Stats() {
     
 }
 
+$("#executa_pesquisa").click (function() {
+    var paramPesquisar = $("#pesquisa").val();
+    init(paramPesquisar);
 
+})
+
+
+$(document).ready(function () {
+
+
+    $("#buttonPesquisa").click(function () {
+        $login = $(this).parent();
+        $login.hide();
+        $("#mainPage").show();
+    });
+
+    $('#buttonLike').click(function () {
+        library.like();
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
+        }
+    });
+
+    $('#buttonFav').click(function () {
+        library.favorite();
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
+        }
+
+    });
+
+    $('#buttonDislike').click(function () {
+        library.dislike();
+        if (library.nextBook() === false) {
+            $("#mainPage").hide();
+            $("#endPage").show();
+            Stats()
+        }
+    });
+});
