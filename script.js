@@ -79,8 +79,7 @@ library.nextBook(a);
 */
 
 var library = null;
-function init () {
-    var paramPesquisar = "spiderman";
+function init (paramPesquisar) {
     $.get("https://www.googleapis.com/books/v1/volumes?q=" + encodeURI(paramPesquisar)).done(function (data) {     //o data é o call back do json
         library = new Library();
         for (var i =0 ; i<10; i++){
@@ -99,7 +98,7 @@ function init () {
     })
 }
 
-init();
+init("tolkien");
 
 function Stats() {
     var totalLikes = 0;
