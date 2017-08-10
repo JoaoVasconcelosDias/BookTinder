@@ -156,18 +156,4 @@ function Stats() {
     
 }
 
-function completeLikes() {
-
-    var html = `
-                <tr>
-                <td> `+ Likes + `
-                </td>
-                <td> `+ Dislikes + `
-                </td>
-                </tr>`;
-
-    $('#tblLikes tbody').append(html);
-
-
-}
 

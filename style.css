@@ -49,7 +49,7 @@ body{
     padding: 20px;
 }
 
-h1 {
+h3 {
     text-align: center;
     padding: 15px;
     font: 40px arial, sans-serif;
@@ -84,14 +84,7 @@ h2 {
     border: 1px solid #900;
 }
 
-#counter{
-    text-align: center;
-    padding: 15px;
-    font: 20px arial, sans-serif;
-    color: goldenrod
-}
-
-#contadro1{
+#contador1{
     text-align: center;
     padding: 15px;
     font: 15px arial, sans-serif;
@@ -110,4 +103,71 @@ h2 {
     padding: 15px;
     font: 15px arial, sans-serif;
     color: goldenrod
+}
+
+.tableBooks th h1 {
+	  font-weight: bold;
+	  font-size: 1em;
+  text-align: left;
+  color: #185875;
+}
+
+.tableBooks td {
+	  font-weight: normal;
+	  font-size: 1em;
+  -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+	   -moz-box-shadow: 0 2px 2px -2px #0E1119;
+	        box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+.tableBooks {
+	  text-align: left;
+	  overflow: hidden;
+	  width: 80%;
+	  margin: 0 auto;
+  display: table;
+  padding: 0 0 8em 0;
+}
+
+.tableBooks td, .tableBooks th {
+	  padding-bottom: 2%;
+	  padding-top: 2%;
+  padding-left:2%;  
+}
+
+/* Background-color of the odd rows */
+.tableBooks tr:nth-child(odd) {
+	  background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.tableBooks tr:nth-child(even) {
+	  background-color: #2C3446;
+}
+
+.tableBooks th {
+	  background-color: #1F2739;
+}
+
+.tableBooks td:first-child { color: #FB667A; }
+
+.tableBooks tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.tableBooks td:hover {
+  background-color: #FFF842;
+  color: #403E10;
+  font-weight: bold;
+  
+  box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
+  transform: translate3d(6px, -6px, 0);
+  
+  transition-delay: 0s;
+	  transition-duration: 0.4s;
+	  transition-property: all;
+  transition-timing-function: line;
 }
