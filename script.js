@@ -18,8 +18,8 @@ $(document).ready(function () {
             Stats()
         }
     });
-    $('#buttonDislike').click(function () {
-        library.dislike();
+    $('#buttonFav').click(function () {
+        library.favorite();
         if (library.nextBook() === false) {
             $("#mainPage").hide();
             $("#endPage").show();
@@ -27,8 +27,8 @@ $(document).ready(function () {
         }
 
     });
-    $('#buttonFav').click(function () {
-        library.favorite();
+    $('#buttonDislike').click(function () {
+        library.dislike();
         if (library.nextBook() === false) {
             $("#mainPage").hide();
             $("#endPage").show();
@@ -141,46 +141,20 @@ function Stats() {
         html += book.like;
         html += "</td>";
         html += "<td>";
-        html += book.dislike;
+        html += book.favorite;
         html += "</td>";
         html += "<td>";
-        html += book.favorite;
+        html += book.dislike;
         html += "</td>";
         html += "</tr>";
         $('#counter').append(html);
     }
 
     $("#contador1").text(totalLikes);
-    $("#contador2").text(totalDislikes);
     $("#contador3").text(totalFavorites);
+    $("#contador2").text(totalDislikes);
+    
 }
-
-
-/*function complete() {
-
-    $.each(library, function (index, livro) {
-
-        var html = `
-                <tr>
-                <td> `+ livro.title + `
-                </td>
-                <td> `+ livro.opinion + `
-                </td>
-                </tr>`;
-
-        $('#tblresults tbody').append(html);
-
-    });
-
-}
-
-
-
-
-
-
-
-
 
 function completeLikes() {
 
@@ -196,44 +170,4 @@ function completeLikes() {
 
 
 }
-
-
-/*var Likes = 0;
-var Dislikes = 0;
-function Likescounter() {
-
-    $.each(library, function (index, livro) {
-        if (livro.opinion == "gosto") {
-            Likes++;
-        }
-        else if (livro.opinion == "naogosto") {
-            Dislikes++;
-        }
-
-    });
-}    
-
-
-
-
-function loadData(){
-    var HTMLtoInsert=
-
-
-    $.each(library,function(index,livro){
-        $('#bookContainer').append(HTMLtoInsert);
-        $lastInserted = $('.livro:last-child');
-
-        $('img',$lastInserted).attr('src',livro.image);
-        $('h2',$lastInserted).html(livro.title);
-        $('p1',$lastInserted).html(livro.descr);
-        $('p',$lastInserted).text(livro.compra);
-        $('a.linkAmazon',$lastInserted).attr('href',livro.links.linkAmazon);
-        $('a.linkWook',$lastInserted).attr('href',livro.links.linkWook);
-    });
-    $('.livro:first-child').addClass('active'); 
-
-}
-
-loadData();*/
 

@@ -4,11 +4,11 @@
         <link rel="stylesheet" href="bootstrap.css">
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
-        <title></title>
+        <title>Tinder for Books</title>
     </head>
     
     <body>
-        <h1 class="titulo"><strong>J.R.R.Tolkien Collection</strong></h1>
+        <h1 class="titulo"><strong>J.R.R.Tolkien Repository</strong></h1>
         <div class="container-fluid">
 
                 <div class="login">
@@ -17,15 +17,16 @@
             <div id="mainPage">
 
                  <div class = "botao"> 
-                    <button id="buttonLike" data-Opinion="gosto" class="btn btn-success gosto"><span style="cursor:pointer">Gosto</span><br></button>   
-                    <button id="buttonDislike" data-Opinion="naogosto" class="btn btn-danger naogosto"><span style="cursor:pointer">Não Gosto</span><br></button>    
-                    <button id="buttonFav" data-Opinion="favorite" class="btn btn-danger favorite"><span style="cursor:pointer">Favorito</span><br></button>
-                
+                    <button id="buttonLike" data-Opinion="gosto" class="btn btn-success gosto"><span style="cursor:pointer">Like</span><br></button>   
+                    <button id="buttonDislike" data-Opinion="naogosto" class="btn btn-danger naogosto"><span style="cursor:pointer">Dislike</span><br></button>    
+                    <div>
+                    <button id="buttonFav"><span style="cursor:pointer">Favorite</span><br></button>
+                    </div>       
                 </div>
 
                 <div id="bookContainer" class="row"> 
                     
-                    <div class="col-md-4 col-xs-10 col-md-offset-4 col-xs-offset-1 clearfix">
+                    <div class="livros col-md-4 col-xs-10 col-md-offset-4 col-xs-offset-1 clearfix">
                         <img src="" class="img-thumbnail" alt="Responsive image">
                         <h2 id="title"></h2>
                         <div>
@@ -54,8 +55,8 @@
                 <tr>
                     <td>Book</td>
                     <td>Likes</td>
-                    <td>Dislikes</td>
                     <td>Favorites</td>
+                    <td>Dislikes</td>
                 </tr>
             </thead>
             <tbody id="counter">
@@ -66,9 +67,9 @@
         <br>
         <label>Likes: </label><label id="contador1"></label>
         <br>
-        <label>Dislikes: </label><label id="contador2"></label>
+        <label>Favorites: </label><label id="contador3"></label>    
         <br>
-        <label>Favorites: </label><label id="contador3"></label>
+        <label>Dislikes: </label><label id="contador2"></label>
 
             <div>
 

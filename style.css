@@ -15,11 +15,6 @@
     display:block;
 }
 
-.livro{
-    text-align:center;
-    display: none;
-}
-
 .titulo{
     text-align:center;
     display: block;
@@ -68,22 +63,25 @@ h2 {
     text-align:center;
 }
 
-p {
+.livros {
     text-align: center;
     padding: 15px;
-    color: goldenrod;
 }
 
-.livro.active{
-    display: block;
-} 
-
-.login.active{
-    display: block;
-} 
+#compra {
+    text-align: center;
+    color: goldenrod;
+    text-align:center;
+    padding: 5px;
+}
 
 .botao{
     text-align:center;
+}
+
+#buttonFav{
+    padding: 5px;
+    border: 1px solid #900;
 }
 
 #counter{
