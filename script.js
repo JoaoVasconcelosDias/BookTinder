@@ -1,3 +1,4 @@
+
 function Book(title, descr, img, buy) {   /*construtor*/                                                              /*atributos*/
     this.title = title;
     this.descr = descr;
@@ -78,33 +79,34 @@ library.addBook(book3);
 library.nextBook(a);
 */
 
-var library = null;
-function init (paramPesquisar) {
-    $.get("https://www.googleapis.com/books/v1/volumes?q=" + encodeURI(paramPesquisar)).done(function (data) {     //o data é o call back do json
-        library = new Library();
-        for (var i =0 ; i<10; i++){
-            var title = data.items[i].volumeInfo.title;
-            var descr = data.items[i].volumeInfo.description;
-            var img = data.items[i].volumeInfo.imageLinks.thumbnail;
-            var buy = data.items[i].saleInfo.buyLink
-            
-            var a = new Book (title, descr, img, buy)
+var library = new Library();
+var count = 1;
+function init(paramPesquisar) {
+    $.get("https://www.googleapis.com/books/v1/volumes?q=" + encodeURI(paramPesquisar) + count).done(function (data) {     //o data é o call back do json
+        for (var i = 0; i < data.items.length; i++) {
+            var googleBook = data.items[i];
+            var title = googleBook.volumeInfo.title != null ? googleBook.volumeInfo.title : "Titulo";//data.items[i].volumeInfo.title;
+            var descr = googleBook.volumeInfo.description != null ? googleBook.volumeInfo.description : "Description";
+            var img = googleBook.volumeInfo.imageLinks != null ? googleBook.volumeInfo.imageLinks.thumbnail : "https://www.google.pt/imgres?imgurl=http%3A%2F%2Fwww.instrumentationtoday.com%2Fwp-content%2Fthemes%2Fpatus%2Fimages%2Fno-image-half-landscape.png&imgrefurl=http%3A%2F%2Fwww.instrumentationtoday.com%2Fquartz-reference-vacuum-gauge%2F2011%2F10%2F&docid=tUVJfLj2Jhxj0M&tbnid=5MAlkBuy068ITM%3A&vet=10ahUKEwjlltqTx8_VAhXDQBQKHaj7BXAQMwhGKBAwEA..i&w=190&h=180&bih=638&biw=1366&q=No%20image&ved=0ahUKEwjlltqTx8_VAhXDQBQKHaj7BXAQMwhGKBAwEA&iact=mrc&uact=8";
+            var buy = googleBook.saleInfo.buyLink != null ? googleBook.saleInfo.buyLink : "Sem Compra"; 
+
+            var a = new Book(title, descr, img, buy)
             library.addBook(a);
         }
         library.nextBook();
- 
+
     }).fail(function (data) {
-        
+
     })
 }
 
 init("tolkien");
 
+var totalLikes = 0;
+var totalDislikes = 0;
+var totalFavorites = 0;
 function Stats() {
-    var totalLikes = 0;
-    var totalDislikes = 0;
-    var totalFavorites = 0;
-
+    
     var book;
     //while we can dequeue books
     while ((book = library.booksRead.dequeue()) !== undefined) {
@@ -133,10 +135,10 @@ function Stats() {
     $("#contador1").text(totalLikes);
     $("#contador3").text(totalFavorites);
     $("#contador2").text(totalDislikes);
-    
+
 }
 
-$("#executa_pesquisa").click (function() {
+$("#executa_pesquisa").click(function () {
     var paramPesquisar = $("#pesquisa").val();
     init(paramPesquisar);
 
@@ -178,5 +180,12 @@ $(document).ready(function () {
             $("#endPage").show();
             Stats()
         }
+    });
+
+    $("#endPage").on("click", ".endbutton", function () {
+        $("#endPage").hide();
+        $("#mainPage").show();
+        count += 10;
+        init("tolkien");
     });
 });
