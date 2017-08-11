@@ -90,8 +90,8 @@ library.nextBook(a);
 
 var library = new Library();
 var count = 1;
-function init(paramPesquisar) {
-    $.get("https://www.googleapis.com/books/v1/volumes?q=" + encodeURI(paramPesquisar) + count).done(function (data) {     //o data é o call back do json
+function init() {
+    $.get("https://www.googleapis.com/books/v1/volumes?q=inauthor:tolkien" + count).done(function (data) {     //o data é o call back do json
         for (var i = 0; i < data.items.length; i++) {
             var googleBook = data.items[i];
             var title = googleBook.volumeInfo.title != null ? googleBook.volumeInfo.title : "Titulo";//data.items[i].volumeInfo.title;
@@ -109,7 +109,7 @@ function init(paramPesquisar) {
     })
 }
 
-init("tolkien");
+init();
 
 var totalLikes = 0;
 var totalDislikes = 0;
@@ -146,13 +146,6 @@ function Stats() {
     $("#contador2").text(totalDislikes);
 
 }
-
-$("#executa_pesquisa").click(function () {
-    var paramPesquisar = $("#pesquisa").val();
-    init(paramPesquisar);
-
-})
-
 
 $(document).ready(function () {
 
@@ -195,6 +188,6 @@ $(document).ready(function () {
         $("#endPage").hide();
         $("#mainPage").show();
         count += 10;
-        init("tolkien");
+        init();
     });
 });
