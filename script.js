@@ -1,3 +1,12 @@
+$.fn.extend({
+    animateCss: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+        return this;
+    }
+});
 
 function Book(title, descr, img, buy) {   /*construtor*/                                                              /*atributos*/
     this.title = title;
@@ -14,7 +23,7 @@ function Book(title, descr, img, buy) {   /*construtor*/                        
         $("#descricao").html(this.descr);
         $(".img-thumbnail").attr('src', this.img);
         $(".compra").attr('href', this.buy);
-
+        $(".img-thumbnail").animateCss("lightSpeedIn")
     }
 
 }
@@ -87,7 +96,7 @@ function init(paramPesquisar) {
             var googleBook = data.items[i];
             var title = googleBook.volumeInfo.title != null ? googleBook.volumeInfo.title : "Titulo";//data.items[i].volumeInfo.title;
             var descr = googleBook.volumeInfo.description != null ? googleBook.volumeInfo.description : "Description";
-            var img = googleBook.volumeInfo.imageLinks != null ? googleBook.volumeInfo.imageLinks.thumbnail : "https://www.google.pt/imgres?imgurl=http%3A%2F%2Fwww.instrumentationtoday.com%2Fwp-content%2Fthemes%2Fpatus%2Fimages%2Fno-image-half-landscape.png&imgrefurl=http%3A%2F%2Fwww.instrumentationtoday.com%2Fquartz-reference-vacuum-gauge%2F2011%2F10%2F&docid=tUVJfLj2Jhxj0M&tbnid=5MAlkBuy068ITM%3A&vet=10ahUKEwjlltqTx8_VAhXDQBQKHaj7BXAQMwhGKBAwEA..i&w=190&h=180&bih=638&biw=1366&q=No%20image&ved=0ahUKEwjlltqTx8_VAhXDQBQKHaj7BXAQMwhGKBAwEA&iact=mrc&uact=8";
+            var img = googleBook.volumeInfo.imageLinks != null ? googleBook.volumeInfo.imageLinks.thumbnail : "http://www.beep.es/Imagenes/no_imagen.jpg";
             var buy = googleBook.saleInfo.buyLink != null ? googleBook.saleInfo.buyLink : "Sem Compra"; 
 
             var a = new Book(title, descr, img, buy)
