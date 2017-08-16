@@ -1,11 +1,18 @@
 $.fn.extend({
     animateCss: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animationName).one(animationEnd, function() {
+        this.addClass('animated ' + animationName).one(animationEnd, function () {
             $(this).removeClass('animated ' + animationName);
         });
         return this;
     }
+});
+
+$body = $("body");
+
+$(document).on({
+    ajaxStart: function () { $body.addClass("loading"); },
+    ajaxStop: function () { $body.removeClass("loading"); }
 });
 
 /*$("#buttonPesquisa").click (function() {
@@ -103,7 +110,7 @@ function init() {
             var title = googleBook.volumeInfo.title != null ? googleBook.volumeInfo.title : "Titulo";//data.items[i].volumeInfo.title;
             var descr = googleBook.volumeInfo.description != null ? googleBook.volumeInfo.description : "Description";
             var img = googleBook.volumeInfo.imageLinks != null ? googleBook.volumeInfo.imageLinks.thumbnail : "http://www.beep.es/Imagenes/no_imagen.jpg";
-            var buy = googleBook.saleInfo.buyLink != null ? googleBook.saleInfo.buyLink : "Sem Compra"; 
+            var buy = googleBook.saleInfo.buyLink != null ? googleBook.saleInfo.buyLink : "Sem Compra";
 
             var a = new Book(title, descr, img, buy)
             library.addBook(a);
@@ -121,7 +128,7 @@ var totalLikes = 0;
 var totalDislikes = 0;
 var totalFavorites = 0;
 function Stats() {
-    
+
     var book;
     //while we can dequeue books
     while ((book = library.booksRead.dequeue()) !== undefined) {
@@ -197,5 +204,6 @@ $(document).ready(function () {
         init("tolkien");
     });
 
-    
+
 });
+
